@@ -1,0 +1,52 @@
+Procedure ReadWord(Var Result : Word; x, y, MaxLength : byte);
+Const
+  ValidSymbol : set of char=['0'..'9',#8,#13];
+Var
+  Str : string;
+  Code : integer;
+  Key : char;
+Begin
+  GoToXY(x, y);{курсор - в заданную позицию}
+  Str := ''; {строка пустая}
+  repeat {начало бесконечного цикла}
+    {проверка вводимых символов на допустимость}
+    repeat
+      Key := ReadKey
+    until Key in ValidSymbol;
+    case Key of {анализ вводимых символов}
+      '0'..'9' : {нажата цифра}
+        if Length(Str)>=MaxLength {если длина больше заданной}
+          then
+            begin
+              Sound(100); {звуковой сигнал}
+              Delay(200);
+              NoSound;
+            end
+          else {если длина меньше заданной}
+            begin
+              write(Key);
+              Str:=Str+Key; {добавление символа в строку}
+            end;
+      #8 : {нажата клавиша BackSpace}
+        if Length(Str)>0 {если строка не пустая}
+          then
+            begin
+              Delete(Str, Length(Str),1); {удаление из строки}
+              GoToXY(WhereX-1, WhereY); {возврат курсора}
+              write(' '); {запись пробела вместо символа}
+              GoToXY(WhereX-1, WhereY); {возврат курсора}
+            end
+          else {если строка пустая}
+            begin
+              Sound(100); {звуковой сигнал}
+              Delay(200);
+              NoSound;
+            end;
+      #13 : {нажата клавиша Enter}
+        begin
+          Val(Str, Result, Code); {преобразование строки в целое число}
+          Exit {выход из подпрограммы}
+        end;
+      end; {конец оператора Case}
+  until False; {бесконечный цикл}
+End;
