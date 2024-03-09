@@ -1,6 +1,6 @@
 Procedure ReadWord(Var Result : Word; x, y, MaxLength : byte);  
 Const
-  ValidSymbol : set of char=['0'..'9',#8,#13];
+  ValidSymbol : set of char=['0'..'9',#8,#13]; 
 Var
   Str : string;
   Code : integer;
