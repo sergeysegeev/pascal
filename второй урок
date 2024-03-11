@@ -1,5 +1,5 @@
      
-Program Resheto;    
+Program Resheto;     
 Var        
   M : set of byte;       
   i, k, N : Integer;     
