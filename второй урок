@@ -2,7 +2,7 @@
 Program Resheto;       
 Var          
   M : set of byte;        
-  i, k, N : Integer;     
+  i, k, N : Integer;      
 Begin
   Writeln('Введите размер промежутка (до 255) ');
   Readln(N);
