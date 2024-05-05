@@ -1,6 +1,6 @@
       
 Program Resheto;          
-Var                         
+Var                          
   M : set of byte;                         
   i, k, N : Integer;       
 Begin  
